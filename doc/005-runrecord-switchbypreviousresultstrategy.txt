@@ -1,0 +1,109 @@
+                                                 9,0 | 7,0        = PLAYER_WIN | (BET) PLAYER_WIN (HIT)
+                                            (A,4)5,4 | 6,1        = PLAYER_WIN | (BET) BANKER_WIN
+                                                 1,7 | 2,8        = PLAYER_WIN | (BET) BANKER_WIN
+                                                 6,0 | 6,0        = TIE        | (BET) BANKER_WIN
+                                                 9,0 | 8,0        = PLAYER_WIN | (BET) BANKER_WIN
+                                                 9,7 | (A,10)1,5  = TIE        | (BET) BANKER_WIN
+                                            (7,8)5,A | 7,0        = BANKER_WIN | (BET) BANKER_WIN (HIT)
+                                                 0,8 | 3,5        = TIE        | (BET) PLAYER_WIN
+                                           (A,10)1,6 | 6,0        = PLAYER_WIN | (BET) BANKER_WIN
+                                                 7,3 | 6,3        = BANKER_WIN | (BET) BANKER_WIN (HIT)
+                                            (9,6)5,7 | (4,10)4,9  = BANKER_WIN | (BET) PLAYER_WIN
+                                                 9,0 | 7,5        = PLAYER_WIN | (BET) PLAYER_WIN (HIT)
+                                                 9,8 | (A,3)4,J   = PLAYER_WIN | (BET) BANKER_WIN
+                                                 0,7 | 5,3        = BANKER_WIN | (BET) BANKER_WIN (HIT)
+                                                 0,7 | 1,7        = BANKER_WIN | (BET) PLAYER_WIN
+                                            (K,2)2,4 | (9,5)4,J   = PLAYER_WIN | (BET) PLAYER_WIN (HIT)
+                                           (10,2)2,A | (8,4)2,9   = PLAYER_WIN | (BET) BANKER_WIN
+                                            (3,2)5,Q | 9,6        = TIE        | (BET) BANKER_WIN
+                                            (4,Q)4,5 | 0,1        = PLAYER_WIN | (BET) BANKER_WIN
+                                                 0,8 | 2,2        = PLAYER_WIN | (BET) BANKER_WIN
+                                                 8,8 | (Q,K)0,4   = PLAYER_WIN | (BET) BANKER_WIN
+                                                 0,1 | 4,4        = BANKER_WIN | (BET) BANKER_WIN (HIT)
+                                            (A,2)3,9 | 4,3        = BANKER_WIN | (BET) PLAYER_WIN
+                                            (A,A)2,K | (2,K)2,7   = BANKER_WIN | (BET) PLAYER_WIN
+                                                 0,6 | (5,6)1,4   = PLAYER_WIN | (BET) PLAYER_WIN (HIT)
+                                                 6,2 | 5,3        = TIE        | (BET) BANKER_WIN
+                                                 0,8 | 9,5        = PLAYER_WIN | (BET) BANKER_WIN
+                                                 6,1 | 0,7        = TIE        | (BET) BANKER_WIN
+                                                 0,8 | 5,0        = PLAYER_WIN | (BET) BANKER_WIN
+                                            (K,K)0,K | 3,2        = BANKER_WIN | (BET) BANKER_WIN (HIT)
+                                            (K,K)0,2 | (8,5)3,9   = TIE        | (BET) PLAYER_WIN
+                                                 5,2 | 0,7        = TIE        | (BET) BANKER_WIN
+                                           (J,10)0,J | (K,A)1,3   = BANKER_WIN | (BET) BANKER_WIN (HIT)
+                                           (4,10)4,Q | 2,5        = BANKER_WIN | (BET) PLAYER_WIN
+                                            (2,Q)2,K | 0,6        = BANKER_WIN | (BET) PLAYER_WIN
+                                                 5,0 | 8,0        = BANKER_WIN | (BET) PLAYER_WIN
+                                                 5,7 | 8,0        = BANKER_WIN | (BET) PLAYER_WIN
+                                                 1,2 | 0,8        = BANKER_WIN | (BET) PLAYER_WIN
+                                                 2,4 | 0,9        = BANKER_WIN | (BET) PLAYER_WIN
+                                                 7,0 | (6,9)5,K   = PLAYER_WIN | (BET) PLAYER_WIN (HIT)
+                                            (5,6)1,A | (J,3)3,2   = BANKER_WIN | (BET) BANKER_WIN (HIT)
+                                            (Q,3)3,A | 0,6        = BANKER_WIN | (BET) PLAYER_WIN
+                                           (10,A)1,4 | (Q,4)4,3   = BANKER_WIN | (BET) PLAYER_WIN
+                                                 8,9 | (5,5)0,4   = PLAYER_WIN | (BET) PLAYER_WIN (HIT)
+                                            (K,3)3,9 | (2,8)0,K   = PLAYER_WIN | (BET) BANKER_WIN
+                                           (4,10)4,2 | (8,4)2,A   = PLAYER_WIN | (BET) BANKER_WIN
+                                                 6,1 | (J,10)0,9  = BANKER_WIN | (BET) BANKER_WIN (HIT)
+                                            (A,4)5,6 | 2,4        = BANKER_WIN | (BET) PLAYER_WIN
+                                                 9,7 | 8,9        = BANKER_WIN | (BET) PLAYER_WIN
+                                           (2,8)0,10 | (J,2)2,K   = BANKER_WIN | (BET) PLAYER_WIN
+                                            (9,3)2,A | (J,3)3,10  = TIE        | (BET) PLAYER_WIN
+                                                 4,0 | 0,8        = BANKER_WIN | (BET) BANKER_WIN (HIT)
+                                                 1,6 | (J,5)5,8   = PLAYER_WIN | (BET) PLAYER_WIN (HIT)
+                                                 4,2 | (4,10)4,A  = PLAYER_WIN | (BET) BANKER_WIN
+                                                 0,7 | (10,4)4,5  = BANKER_WIN | (BET) BANKER_WIN (HIT)
+                                                 4,2 | (9,3)2,9   = PLAYER_WIN | (BET) PLAYER_WIN (HIT)
+                                            (J,J)0,K | 7,7        = BANKER_WIN | (BET) BANKER_WIN (HIT)
+                                                 6,0 | 0,9        = BANKER_WIN | (BET) PLAYER_WIN
+                                            (3,K)3,J | 8,7        = BANKER_WIN | (BET) PLAYER_WIN
+                                                 3,0 | 9,0        = BANKER_WIN | (BET) PLAYER_WIN
+                                            (4,J)4,J | 0,6        = BANKER_WIN | (BET) PLAYER_WIN
+                                                 0,6 | (J,5)5,6   = PLAYER_WIN | (BET) PLAYER_WIN (HIT)
+                                                 8,1 | 5,9        = PLAYER_WIN | (BET) BANKER_WIN
+                                                 7,0 | 6,1        = TIE        | (BET) BANKER_WIN
+                                            (A,K)1,Q | 6,0        = BANKER_WIN | (BET) BANKER_WIN (HIT)
+                                           (5,10)5,2 | (3,J)3,K   = PLAYER_WIN | (BET) PLAYER_WIN (HIT)
+                                            (Q,A)1,K | (A,10)1,10 = TIE        | (BET) BANKER_WIN
+                                                 3,3 | (3,8)1,4   = PLAYER_WIN | (BET) BANKER_WIN
+                                                 0,9 | 0,2        = PLAYER_WIN | (BET) BANKER_WIN
+                                                 0,6 | (Q,Q)0,7   = BANKER_WIN | (BET) BANKER_WIN (HIT)
+                                                 0,9 | 0,0        = PLAYER_WIN | (BET) PLAYER_WIN (HIT)
+                                                 0,7 | (3,Q)3,5   = BANKER_WIN | (BET) BANKER_WIN (HIT)
+                                            (9,5)4,6 | (K,10)0,6  = BANKER_WIN | (BET) PLAYER_WIN
+                                                 3,3 | (Q,2)2,J   = PLAYER_WIN | (BET) PLAYER_WIN (HIT)
+                                            (3,7)0,4 | 0,5        = BANKER_WIN | (BET) BANKER_WIN (HIT)
+                                            (2,J)2,6 | 0,3        = PLAYER_WIN | (BET) PLAYER_WIN (HIT)
+                                            (A,4)5,7 | (5,6)1,Q   = PLAYER_WIN | (BET) BANKER_WIN
+                                            (5,8)3,6 | 0,3        = PLAYER_WIN | (BET) BANKER_WIN
+                                            (Q,2)2,8 | 7,7        = BANKER_WIN | (BET) BANKER_WIN (HIT)
+                                                 3,3 | (4,10)4,K  = PLAYER_WIN | (BET) PLAYER_WIN (HIT)
+                                                 0,9 | 9,5        = PLAYER_WIN | (BET) BANKER_WIN
+                                            (5,8)3,8 | 7,8        = BANKER_WIN | (BET) BANKER_WIN (HIT)
+                                           (10,2)2,4 | 7,0        = BANKER_WIN | (BET) PLAYER_WIN
+                                            (6,5)1,5 | (8,2)0,9   = BANKER_WIN | (BET) PLAYER_WIN
+                                            (7,3)0,Q | 8,7        = BANKER_WIN | (BET) PLAYER_WIN
+                                                     卡用完了，重新初始化!
+                                            (2,K)2,K | (4,6)0,2   = TIE        | (BET) PLAYER_WIN
+                                           (10,5)5,2 | 9,7        = PLAYER_WIN | (BET) BANKER_WIN
+                                                 0,0 | 3,6        = BANKER_WIN | (BET) BANKER_WIN (HIT)
+                                                 0,2 | 9,0        = BANKER_WIN | (BET) PLAYER_WIN
+                                                 6,0 | 5,1        = TIE        | (BET) PLAYER_WIN
+                                                 3,7 | 0,8        = BANKER_WIN | (BET) BANKER_WIN (HIT)
+                                                 1,8 | 6,9        = PLAYER_WIN | (BET) PLAYER_WIN (HIT)
+                                                 0,7 | (Q,10)0,10 = PLAYER_WIN | (BET) BANKER_WIN
+                                                 9,7 | 4,3        = BANKER_WIN | (BET) BANKER_WIN (HIT)
+                                                 4,5 | 8,0        = PLAYER_WIN | (BET) PLAYER_WIN (HIT)
+                                            (2,J)2,7 | 1,4        = PLAYER_WIN | (BET) BANKER_WIN
+                                            (Q,3)3,5 | 6,0        = PLAYER_WIN | (BET) BANKER_WIN
+                                                 6,0 | (K,3)3,K   = PLAYER_WIN | (BET) BANKER_WIN
+                                            (9,2)1,8 | 2,0        = PLAYER_WIN | (BET) BANKER_WIN
+
+                                          =============================================
+
+                                                TIE_COUNT:13(0.13)
+                                                TIE_SWITCH_COUNT:9(0.09)
+                                                BANKER_WIN_COUNT:44(0.44)
+                                                PLAYER_WIN_COUNT:42(0.42)
+
+                                                BET_WIN_COUNT:36(0.36)
