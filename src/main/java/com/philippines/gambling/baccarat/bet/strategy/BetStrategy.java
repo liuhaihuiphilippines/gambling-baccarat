@@ -5,7 +5,7 @@
 package com.philippines.gambling.baccarat.bet.strategy;
 
 import com.philippines.gambling.baccarat.rule.BetResult;
-import com.philippines.gambling.baccarat.rule.BetWinerEnum;
+import com.philippines.gambling.baccarat.rule.BetResultEnum;
 
 /**
  * @author winter
@@ -13,7 +13,7 @@ import com.philippines.gambling.baccarat.rule.BetWinerEnum;
  */
 public interface BetStrategy {
 
-	BetWinerEnum getBetWho(BetWinerEnum ...onRound);
+	BetResultEnum getBetWho(BetResultEnum ...onRound);
 	
 	BetResult getCurrentRoundBetWho(BetResult ...previousRoundBetResult);
 	

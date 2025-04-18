@@ -8,7 +8,7 @@ import com.philippines.gambling.baccarat.bet.strategy.BetStrategy;
 import com.philippines.gambling.baccarat.bet.strategy.StrategyConstants;
 import com.philippines.gambling.baccarat.constant.PrintOut;
 import com.philippines.gambling.baccarat.rule.BetResult;
-import com.philippines.gambling.baccarat.rule.BetWinerEnum;
+import com.philippines.gambling.baccarat.rule.BetResultEnum;
 
 /**
  * @author winter
@@ -17,7 +17,7 @@ import com.philippines.gambling.baccarat.rule.BetWinerEnum;
 public class SwitchUntilWinWithBetAmountStrategy extends StrategyConstants implements BetStrategy {
 	
 	@Override
-	public BetWinerEnum getBetWho(BetWinerEnum ...onRound) {
+	public BetResultEnum getBetWho(BetResultEnum ...onRound) {
 		return null;
 	}
 	@Override
@@ -43,8 +43,8 @@ public class SwitchUntilWinWithBetAmountStrategy extends StrategyConstants imple
 		}
 		
 		//有Bet记录，说明上次没有Bet
-		BetWinerEnum previousRoundWhoWin = previousOneRoundBetResult.getWhoWin();
-		BetWinerEnum currentRoundBetWho = getCurrentRoundIShouldBet(previousRoundWhoWin);
+		BetResultEnum previousRoundWhoWin = previousOneRoundBetResult.getWhoWin();
+		BetResultEnum currentRoundBetWho = getCurrentRoundIShouldBet(previousRoundWhoWin);
 		//需要Bet,则计算bet谁和bet金额
 		if(currentRoundBetWho != null) {
 			//有Bet记录，判断上一次的Bet输赢情况
@@ -65,11 +65,11 @@ public class SwitchUntilWinWithBetAmountStrategy extends StrategyConstants imple
 		//本轮不下注
 		return previousOneRoundBetResult;
 	}
-	protected static BetWinerEnum getCurrentRoundIShouldBet(BetWinerEnum previousRoundWhoWin) {
-		if(previousRoundWhoWin == BetWinerEnum.BANKER_WIN) {
-			return BetWinerEnum.PLAYER_WIN;
-		}else if(previousRoundWhoWin == BetWinerEnum.PLAYER_WIN) {
-			return BetWinerEnum.BANKER_WIN;
+	protected static BetResultEnum getCurrentRoundIShouldBet(BetResultEnum previousRoundWhoWin) {
+		if(previousRoundWhoWin == BetResultEnum.BANKER_WIN) {
+			return BetResultEnum.PLAYER_WIN;
+		}else if(previousRoundWhoWin == BetResultEnum.PLAYER_WIN) {
+			return BetResultEnum.BANKER_WIN;
 		}
 		//说明是BetWinerEnum.TIE
 		//TIE的时候就不下注了

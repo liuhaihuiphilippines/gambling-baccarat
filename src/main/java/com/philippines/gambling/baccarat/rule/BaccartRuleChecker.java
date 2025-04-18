@@ -105,8 +105,8 @@ public class BaccartRuleChecker extends BaccartCalculator {
 		//return false;
 		BaccaratPlayer baccaratPlayer = getBaccaratGame().getBaccaratPlayerList().get(0);
 		BaccaratBanker baccaratBanker = getBaccaratGame().getBaccaratBanker();
-		BetWinerEnum twotwoCompareResult = twotwoCompare(baccaratPlayer.getPokerCardBox(), baccaratBanker.getPokerCardBox());
-		return twotwoCompareResult == BetWinerEnum.PLAYER_NEED_ONMORECARD;
+		BetResultEnum twotwoCompareResult = twotwoCompare(baccaratPlayer.getPokerCardBox(), baccaratBanker.getPokerCardBox());
+		return twotwoCompareResult == BetResultEnum.PLAYER_NEED_ONMORECARD;
 	}
 	
 	/**
@@ -131,8 +131,8 @@ public class BaccartRuleChecker extends BaccartCalculator {
 		//return false;
 		BaccaratPlayer baccaratPlayer = getBaccaratGame().getBaccaratPlayerList().get(0);
 		BaccaratBanker baccaratBanker = getBaccaratGame().getBaccaratBanker();
-		BetWinerEnum twotwoCompareResult = twotwoCompare(baccaratPlayer.getPokerCardBox(), baccaratBanker.getPokerCardBox());
-		return twotwoCompareResult == BetWinerEnum.BANKER_NEED_ONMORECARD;
+		BetResultEnum twotwoCompareResult = twotwoCompare(baccaratPlayer.getPokerCardBox(), baccaratBanker.getPokerCardBox());
+		return twotwoCompareResult == BetResultEnum.BANKER_NEED_ONMORECARD;
 	}
 
 }

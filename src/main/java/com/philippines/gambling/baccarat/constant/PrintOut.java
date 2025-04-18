@@ -24,5 +24,6 @@ public class PrintOut {
 	public static Integer ROUND_BET_COUNTER = 0;//总计有效下注轮数
 	public static Integer ROUND_MAXIMUM_BALANCE = 0;//所有轮里面余额最大的时候是多少
 	public static Integer ROUND_LEFT_BALANCE = 0;//离开赌场时的账户余额
+	public static int cardBoxInitTime = 1;//卡盒纸牌用完的盒子数量
 }
 

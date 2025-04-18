@@ -20,9 +20,9 @@ import lombok.Setter;
 @AllArgsConstructor
 public class BetResult {
 	
-	private BetWinerEnum whoWin;
+	private BetResultEnum whoWin;
 
-	private BetWinerEnum betWho;
+	private BetResultEnum betWho;
 	
 	/**
 	 * 当前下注金额

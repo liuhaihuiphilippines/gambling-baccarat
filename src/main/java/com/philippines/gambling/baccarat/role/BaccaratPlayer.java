@@ -6,7 +6,7 @@ package com.philippines.gambling.baccarat.role;
 import com.philippines.gambling.baccarat.constant.PrintOut;
 import com.philippines.gambling.baccarat.rule.BaccartGloalResult;
 import com.philippines.gambling.baccarat.rule.BetResultOfEachRound;
-import com.philippines.gambling.baccarat.rule.BetWinerEnum;
+import com.philippines.gambling.baccarat.rule.BetResultEnum;
 
 import cn.hutool.core.util.RandomUtil;
 
@@ -74,7 +74,7 @@ public final class BaccaratPlayer extends BaccaratParticipant {
 		int randomWhoWin = RandomUtil.randomInt(0, 17);
 		randomWhoWin = randomWhoWin < 8 ? 0 : (randomWhoWin > 8 ? 2 : 1);
 		int randomWhichBetAmount = RandomUtil.randomInt(0, BET_AMOUNT_ARR.length-1);
-		BetWinerEnum whoWin = BetWinerEnum.values()[randomWhoWin];
+		BetResultEnum whoWin = BetResultEnum.values()[randomWhoWin];
 		Integer currentTimeBetAmount = BET_AMOUNT_ARR[randomWhichBetAmount];
 		if(currentTimeBetAmount > this.getCardBalance()) {
 			//下注金额大于余额就取余额

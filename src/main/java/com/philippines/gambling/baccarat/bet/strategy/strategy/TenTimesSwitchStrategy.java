@@ -7,7 +7,7 @@ package com.philippines.gambling.baccarat.bet.strategy.strategy;
 import com.philippines.gambling.baccarat.bet.strategy.BetStrategy;
 import com.philippines.gambling.baccarat.bet.strategy.StrategyConstants;
 import com.philippines.gambling.baccarat.rule.BetResult;
-import com.philippines.gambling.baccarat.rule.BetWinerEnum;
+import com.philippines.gambling.baccarat.rule.BetResultEnum;
 
 /**
  * @author winter
@@ -16,7 +16,7 @@ import com.philippines.gambling.baccarat.rule.BetWinerEnum;
 public class TenTimesSwitchStrategy extends StrategyConstants implements BetStrategy {
 	
 	@Override
-	public BetWinerEnum getBetWho(BetWinerEnum ...onRound) {
+	public BetResultEnum getBetWho(BetResultEnum ...onRound) {
 		return tenTimesSwitchStrategy(onRound);
 	}
 	@Override
@@ -32,9 +32,9 @@ public class TenTimesSwitchStrategy extends StrategyConstants implements BetStra
 	 * @author: winter
 	 * @date: 2025-03-11 11:58:30
 	 */
-	private static BetWinerEnum[] previousTwoResult = new BetWinerEnum[10];
-	protected static BetWinerEnum tenTimesSwitchStrategy(BetWinerEnum ...onRound) {
-		BetWinerEnum currentRoundBet = onRound[0];
+	private static BetResultEnum[] previousTwoResult = new BetResultEnum[10];
+	protected static BetResultEnum tenTimesSwitchStrategy(BetResultEnum ...onRound) {
+		BetResultEnum currentRoundBet = onRound[0];
 		if(currentRoundBet == null) {
 			return null;
 		}
@@ -62,7 +62,7 @@ public class TenTimesSwitchStrategy extends StrategyConstants implements BetStra
 		}
 		return null;
 	}
-	protected static BetWinerEnum getCurrentRoundIShouldBet(BetWinerEnum previousRoundBet) {
+	protected static BetResultEnum getCurrentRoundIShouldBet(BetResultEnum previousRoundBet) {
 		if(previousRoundBet == BETPOOL[0]) {
 			return BETPOOL[1];
 		}else if(previousRoundBet == BETPOOL[1]) {

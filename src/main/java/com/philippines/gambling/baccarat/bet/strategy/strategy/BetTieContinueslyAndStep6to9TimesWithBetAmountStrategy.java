@@ -8,7 +8,7 @@ import com.philippines.gambling.baccarat.bet.strategy.BetStrategy;
 import com.philippines.gambling.baccarat.bet.strategy.StrategyConstants;
 import com.philippines.gambling.baccarat.constant.PrintOut;
 import com.philippines.gambling.baccarat.rule.BetResult;
-import com.philippines.gambling.baccarat.rule.BetWinerEnum;
+import com.philippines.gambling.baccarat.rule.BetResultEnum;
 
 /**
  * TIE完之后
@@ -20,7 +20,7 @@ import com.philippines.gambling.baccarat.rule.BetWinerEnum;
 public class BetTieContinueslyAndStep6to9TimesWithBetAmountStrategy extends StrategyConstants implements BetStrategy {
 	
 	@Override
-	public BetWinerEnum getBetWho(BetWinerEnum ...onRound) {
+	public BetResultEnum getBetWho(BetResultEnum ...onRound) {
 		return null;
 	}
 	@Override
@@ -39,7 +39,7 @@ public class BetTieContinueslyAndStep6to9TimesWithBetAmountStrategy extends Stra
 						.whoWin(null).totalBalance(PrintOut.HOW_MUCH_MONEY_IHAVE).build();
 		}
 		//有Bet记录，说明上次没有Bet
-		if(previousOneRoundBetResult.getWhoWin() == BetWinerEnum.TIE) {
+		if(previousOneRoundBetResult.getWhoWin() == BetResultEnum.TIE) {
 			//TIE了，将和上一次TIE的距离步长归零
 			tietoCurrentStepDistance = 0;
 			//连续BET一次
@@ -51,7 +51,7 @@ public class BetTieContinueslyAndStep6to9TimesWithBetAmountStrategy extends Stra
 			tietoCurrentStepDistance++;
 			if(tietoCurrentStepDistance >= 6 && tietoCurrentStepDistance <= 9) {
 				//第6次到第9次连续bet 4 次
-				previousOneRoundBetResult.setBetWho(BetWinerEnum.TIE);
+				previousOneRoundBetResult.setBetWho(BetResultEnum.TIE);
 			}else {
 				//不下注
 				previousOneRoundBetResult.setBetWho(null);

@@ -7,7 +7,7 @@ package com.philippines.gambling.baccarat.bet.strategy.strategy;
 import com.philippines.gambling.baccarat.bet.strategy.BetStrategy;
 import com.philippines.gambling.baccarat.bet.strategy.StrategyConstants;
 import com.philippines.gambling.baccarat.rule.BetResult;
-import com.philippines.gambling.baccarat.rule.BetWinerEnum;
+import com.philippines.gambling.baccarat.rule.BetResultEnum;
 
 /**
  * [02]SWITCH策略
@@ -17,7 +17,7 @@ import com.philippines.gambling.baccarat.rule.BetWinerEnum;
 public class SwitchStrategy extends StrategyConstants implements BetStrategy {
 	
 	@Override
-	public BetWinerEnum getBetWho(BetWinerEnum ...onRound) {
+	public BetResultEnum getBetWho(BetResultEnum ...onRound) {
 		return switchStrategy();
 	}
 	@Override
@@ -32,7 +32,7 @@ public class SwitchStrategy extends StrategyConstants implements BetStrategy {
 	 * @date: 2025-03-11 11:58:30
 	 */
 	private static int currentRoundIndex = -1;
-	protected static BetWinerEnum switchStrategy() {
+	protected static BetResultEnum switchStrategy() {
 		//策略就是：1000万-9000万之间取随机数
 		currentRoundIndex++;
 		if(currentRoundIndex % 8 == 0) {

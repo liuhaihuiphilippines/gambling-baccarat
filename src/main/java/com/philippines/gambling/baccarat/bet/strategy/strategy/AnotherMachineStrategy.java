@@ -10,7 +10,7 @@ import com.philippines.gambling.baccarat.game.BaccaratRoundPlay;
 import com.philippines.gambling.baccarat.machine.PokerCardMachine;
 import com.philippines.gambling.baccarat.rule.BaccartCalculator;
 import com.philippines.gambling.baccarat.rule.BetResult;
-import com.philippines.gambling.baccarat.rule.BetWinerEnum;
+import com.philippines.gambling.baccarat.rule.BetResultEnum;
 
 /**
  * [02]SWITCH策略
@@ -20,7 +20,7 @@ import com.philippines.gambling.baccarat.rule.BetWinerEnum;
 public class AnotherMachineStrategy extends StrategyConstants implements BetStrategy {
 	
 	@Override
-	public BetWinerEnum getBetWho(BetWinerEnum ...onRound) {
+	public BetResultEnum getBetWho(BetResultEnum ...onRound) {
 		return anotherMachineStrategy();
 	}
 	@Override
@@ -34,7 +34,7 @@ public class AnotherMachineStrategy extends StrategyConstants implements BetStra
 	 * @author: winter
 	 * @date: 2025-03-11 11:58:30
 	 */
-	protected static BetWinerEnum anotherMachineStrategy() {
+	protected static BetResultEnum anotherMachineStrategy() {
 		BaccartCalculator baccartCalculator = new BaccartCalculator();
 		PokerCardMachine pokerCardMachine = new PokerCardMachine().init();
 		//BetWinerEnum currentRoundWhoWin = BaccaratRoundPlay.playOneRound(pokerCardMachine, baccartCalculator);

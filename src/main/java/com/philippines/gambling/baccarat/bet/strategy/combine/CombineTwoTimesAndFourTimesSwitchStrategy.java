@@ -12,7 +12,7 @@ import com.philippines.gambling.baccarat.bet.strategy.StrategyConstants;
 import com.philippines.gambling.baccarat.bet.strategy.strategy.FourTimesSwitchStrategy;
 import com.philippines.gambling.baccarat.bet.strategy.strategy.TwoTimesSwitchStrategy;
 import com.philippines.gambling.baccarat.rule.BetResult;
-import com.philippines.gambling.baccarat.rule.BetWinerEnum;
+import com.philippines.gambling.baccarat.rule.BetResultEnum;
 
 /**
  * @author winter
@@ -27,9 +27,9 @@ public class CombineTwoTimesAndFourTimesSwitchStrategy extends StrategyConstants
 	}
 	
 	@Override
-	public BetWinerEnum getBetWho(BetWinerEnum ...onRound) {
+	public BetResultEnum getBetWho(BetResultEnum ...onRound) {
 		for(BetStrategy betStrategy : strategyPackageList) {
-			BetWinerEnum betWho = betStrategy.getBetWho(onRound);
+			BetResultEnum betWho = betStrategy.getBetWho(onRound);
 			if(betWho != null) {
 				return betWho;
 			}

@@ -41,7 +41,7 @@ public class BaccartCalculator {
 	 * 计算本局的输赢
 	 */
 	protected void calculateAndSetWinResult() {
-		BetWinerEnum whoWin = calculateWhoWin();
+		BetResultEnum whoWin = calculateWhoWin();
 		setWinResult(whoWin);
 	}
 
@@ -50,7 +50,7 @@ public class BaccartCalculator {
 	 * @author winter
 	 * @return
 	 */
-	private BetWinerEnum calculateWhoWin() {
+	private BetResultEnum calculateWhoWin() {
 		/**
 		 * 拿这两个系统玩家的牌来算输赢(BIG_BOSS VS BIG_GAMBLER)
 		 */
@@ -59,11 +59,11 @@ public class BaccartCalculator {
 		int digitSumBanker = systemBaccaratBanker.getPokerCardBoxDigitSum();
 		int digitSumPlayer = systemBaccaratPlayer.getPokerCardBoxDigitSum();
 		if(digitSumBanker > digitSumPlayer) {
-			return BetWinerEnum.BANKER_WIN;
+			return BetResultEnum.BANKER_WIN;
 		}else if(digitSumBanker < digitSumPlayer) {
-			return BetWinerEnum.PLAYER_WIN;
+			return BetResultEnum.PLAYER_WIN;
 		}
-		return BetWinerEnum.TIE;
+		return BetResultEnum.TIE;
 	}
 	
 
@@ -72,7 +72,7 @@ public class BaccartCalculator {
 	 * @author winter
 	 * @param whoWin
 	 */
-	private void setWinResult(BetWinerEnum whoWin) {
+	private void setWinResult(BetResultEnum whoWin) {
 		BaccaratBanker systemBaccaratBanker = getBaccaratGame().getBaccaratBanker();
 		/**
 		 * 注意这里取的是所有本轮的下注玩家betResultMap
@@ -103,10 +103,10 @@ public class BaccartCalculator {
 					+ "BANKER" + BaccaratBanker.getSystemBanker().displayCardBoxResult());
 		}
 	}
-	public BetWinerEnum twotwoCompare(List<PokerCardUsing> pokerCardBoxPlayer, List<PokerCardUsing> pokerCardBoxBanker) {
+	public BetResultEnum twotwoCompare(List<PokerCardUsing> pokerCardBoxPlayer, List<PokerCardUsing> pokerCardBoxBanker) {
 		return calculateBothSideCardDigitResult(pokerCardBoxPlayer, pokerCardBoxBanker);
 	}
-	private BetWinerEnum calculateBothSideCardDigitResult(List<PokerCardUsing> pokerCardBoxPlayer, List<PokerCardUsing> pokerCardBoxBanker) {
+	private BetResultEnum calculateBothSideCardDigitResult(List<PokerCardUsing> pokerCardBoxPlayer, List<PokerCardUsing> pokerCardBoxBanker) {
 		//PLAYER
 		int playerCardCount = pokerCardBoxPlayer.size();
 		int playerFirstCardDigit = pokerCardBoxPlayer.get(0).getCardDigit();
@@ -134,7 +134,7 @@ public class BaccartCalculator {
 		 */
 		if(playerCardDigitSum == 6 || playerCardDigitSum == 7) {
 			if(bankerCardDigitSum < 6 && bankerCardCount == 2) {
-				return BetWinerEnum.BANKER_NEED_ONMORECARD;
+				return BetResultEnum.BANKER_NEED_ONMORECARD;
 			}
 			return compareDirectory(playerCardDigitSum, bankerCardDigitSum);
 		}
@@ -152,39 +152,39 @@ public class BaccartCalculator {
 		 */
 		if(playerCardDigitSum <= 5) {
 			if(bankerCardDigitSum >= 8) {
-				return BetWinerEnum.BANKER_WIN;
+				return BetResultEnum.BANKER_WIN;
 			}
 			
 			if(playerCardCount <= 2) {
-				return BetWinerEnum.PLAYER_NEED_ONMORECARD;
+				return BetResultEnum.PLAYER_NEED_ONMORECARD;
 			}
 			
 			if(bankerCardCount <= 2) {
 				if(bankerCardDigitSum <= 2){
-					return BetWinerEnum.BANKER_NEED_ONMORECARD;
+					return BetResultEnum.BANKER_NEED_ONMORECARD;
 				}
 				if(bankerCardDigitSum == 3){
 					if(playerThirdCardDigit >= 0 && playerThirdCardDigit != 8) {
-						return BetWinerEnum.BANKER_NEED_ONMORECARD;
+						return BetResultEnum.BANKER_NEED_ONMORECARD;
 					}
 				}
 				if(bankerCardDigitSum == 4){
 					if(playerThirdCardDigit >= 0 && playerThirdCardDigit != 0 
 							&& playerThirdCardDigit != 8 && playerThirdCardDigit != 9) {
-						return BetWinerEnum.BANKER_NEED_ONMORECARD;
+						return BetResultEnum.BANKER_NEED_ONMORECARD;
 					}
 				}
 				if(bankerCardDigitSum == 5){
 					if(playerThirdCardDigit >= 0 && playerThirdCardDigit == 4 
 							&& playerThirdCardDigit == 5 && playerThirdCardDigit == 6
 							&& playerThirdCardDigit == 7) {
-						return BetWinerEnum.BANKER_NEED_ONMORECARD;
+						return BetResultEnum.BANKER_NEED_ONMORECARD;
 					}
 				}
 				if(bankerCardDigitSum == 6){
 					if(playerThirdCardDigit >= 0 && playerThirdCardDigit == 6
 							&& playerThirdCardDigit == 7) {
-						return BetWinerEnum.BANKER_NEED_ONMORECARD;
+						return BetResultEnum.BANKER_NEED_ONMORECARD;
 					}
 				}
 			}
@@ -192,13 +192,13 @@ public class BaccartCalculator {
 		}
 		throw new RuntimeException("未知的结果比较!playerCardDigitSum=" + playerCardDigitSum);
 	}
-	private BetWinerEnum compareDirectory(int playerCardDigitSum, int bankerCardDigitSum) {
+	private BetResultEnum compareDirectory(int playerCardDigitSum, int bankerCardDigitSum) {
 		if(playerCardDigitSum == bankerCardDigitSum) {
-			return BetWinerEnum.TIE;
+			return BetResultEnum.TIE;
 		}else if(playerCardDigitSum < bankerCardDigitSum) {
-			return BetWinerEnum.BANKER_WIN;
+			return BetResultEnum.BANKER_WIN;
 		}else {
-			return BetWinerEnum.PLAYER_WIN;
+			return BetResultEnum.PLAYER_WIN;
 		}
 	}
 	

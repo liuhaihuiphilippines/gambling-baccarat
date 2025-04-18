@@ -7,7 +7,7 @@ package com.philippines.gambling.baccarat.bet.strategy.strategy;
 import com.philippines.gambling.baccarat.bet.strategy.BetStrategy;
 import com.philippines.gambling.baccarat.bet.strategy.StrategyConstants;
 import com.philippines.gambling.baccarat.rule.BetResult;
-import com.philippines.gambling.baccarat.rule.BetWinerEnum;
+import com.philippines.gambling.baccarat.rule.BetResultEnum;
 
 import cn.hutool.core.util.RandomUtil;
 
@@ -19,7 +19,7 @@ import cn.hutool.core.util.RandomUtil;
 public class RandomStrategy extends StrategyConstants implements BetStrategy {
 	
 	@Override
-	public BetWinerEnum getBetWho(BetWinerEnum ...onRound) {
+	public BetResultEnum getBetWho(BetResultEnum ...onRound) {
 		return randomStrategy();
 	}
 	@Override
@@ -33,7 +33,7 @@ public class RandomStrategy extends StrategyConstants implements BetStrategy {
 	 * @author: winter
 	 * @date: 2025-03-11 11:58:30
 	 */
-	protected static BetWinerEnum randomStrategy() {
+	protected static BetResultEnum randomStrategy() {
 		//策略就是：1000万-9000万之间取随机数
 		long randomLong = RandomUtil.randomLong(1000000L, 9000000L);
 		//对随机数进行数字求和,如4360 2305=23

@@ -7,7 +7,7 @@ package com.philippines.gambling.baccarat.bet.strategy.strategy;
 import com.philippines.gambling.baccarat.bet.strategy.BetStrategy;
 import com.philippines.gambling.baccarat.bet.strategy.StrategyConstants;
 import com.philippines.gambling.baccarat.rule.BetResult;
-import com.philippines.gambling.baccarat.rule.BetWinerEnum;
+import com.philippines.gambling.baccarat.rule.BetResultEnum;
 
 /**
  * [02]SWITCH策略
@@ -17,7 +17,7 @@ import com.philippines.gambling.baccarat.rule.BetWinerEnum;
 public class SwitchByPreviousResultStrategy extends StrategyConstants implements BetStrategy {
 	
 	@Override
-	public BetWinerEnum getBetWho(BetWinerEnum ...onRound) {
+	public BetResultEnum getBetWho(BetResultEnum ...onRound) {
 		return switchByPreviousResultStrategy(onRound);
 	}
 	@Override
@@ -31,8 +31,8 @@ public class SwitchByPreviousResultStrategy extends StrategyConstants implements
 	 * @author: winter
 	 * @date: 2025-03-11 11:58:30
 	 */
-	protected static BetWinerEnum switchByPreviousResultStrategy(BetWinerEnum ...onRound) {
-		BetWinerEnum currentRound = onRound[0];
+	protected static BetResultEnum switchByPreviousResultStrategy(BetResultEnum ...onRound) {
+		BetResultEnum currentRound = onRound[0];
 		if(currentRound == null) {
 			return BETPOOL[0];
 		}

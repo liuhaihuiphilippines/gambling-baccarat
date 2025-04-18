@@ -13,9 +13,10 @@ import com.philippines.gambling.baccarat.bet.strategy.StrategyContext;
 import com.philippines.gambling.baccarat.card.PokerCardUsing;
 import com.philippines.gambling.baccarat.constant.PrintOut;
 import com.philippines.gambling.baccarat.machine.PokerCardMachine;
+import com.philippines.gambling.baccarat.result.SegmentRecorder;
 import com.philippines.gambling.baccarat.rule.BaccartCalculator;
 import com.philippines.gambling.baccarat.rule.BetResult;
-import com.philippines.gambling.baccarat.rule.BetWinerEnum;
+import com.philippines.gambling.baccarat.rule.BetResultEnum;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -45,6 +46,8 @@ public class BaccaratRoundPlay {
 		//BetWinerEnum previousRound = null;
 		BetResult previousRoundBetResult = null;
 		BetStrategy specificBetStrategy = StrategyContext.getActiveStrategy();
+		
+		StringBuffer resultBuffer = new StringBuffer();
 		for(int round = 1; round < totalRound; round++) {
 			//获取当前这轮的下注，该下注谁，下注多少金额
 			BetResult currentRoundBetWho = specificBetStrategy.getCurrentRoundBetWho(previousRoundBetResult);
@@ -83,21 +86,35 @@ public class BaccaratRoundPlay {
 				}
 			}
 			
+			//判断剩余卡片数量
+			if(pokerCardMachine.getPokerCardCountsRemaining() < 6) {
+				//会重新初始化牌面，上局的结果作废
+				resultBuffer = new StringBuffer();
+				SegmentRecorder.TieToTie.record(PrintOut.cardBoxInitTime + "=======================");
+				PrintOut.cardBoxInitTime++;
+			}
+			
 			//开始下注
 			//System.out.println("上一局的结果是:" + onRound.name() + "所以这一局我下注:" + betWho.name());
 			//try {Thread.sleep(20);} catch (InterruptedException e) {}
 			BetResult currentRoundBetResult = playOneRound(pokerCardMachine, baccartCalculator, currentRoundBetWho);
 			
-			
 			//统计计算结果
 			{
 				calculateTieCount(currentRoundBetResult);
-				if(currentRoundBetResult.getWhoWin() == BetWinerEnum.TIE) {
+				if(currentRoundBetResult.getWhoWin() == BetResultEnum.TIE) {
 					TIE_COUNT++;
-				}else if(currentRoundBetResult.getWhoWin() == BetWinerEnum.BANKER_WIN) {
+					resultBuffer.append("T");
+					//把这个序列的内容记录到列表
+					SegmentRecorder.TieToTie.record(resultBuffer.toString());
+					resultBuffer = new StringBuffer();
+				}else if(currentRoundBetResult.getWhoWin() == BetResultEnum.BANKER_WIN) {
 					BANKER_WIN_COUNT++;
-				}else if(currentRoundBetResult.getWhoWin() == BetWinerEnum.PLAYER_WIN) {
+					//记录BANKER_WIN && SUM2 OR SUM3 = 6 数据
+					resultBuffer.append("B");
+				}else if(currentRoundBetResult.getWhoWin() == BetResultEnum.PLAYER_WIN) {
 					PLAYER_WIN_COUNT++;
+					resultBuffer.append("P");
 				}
 				if(currentRoundBetWho.getBetWho() == currentRoundBetResult.getWhoWin()) {
 					BET_WIN_COUNT++;
@@ -132,6 +149,7 @@ public class BaccaratRoundPlay {
 		//if(totalBetCount == 0) { totalBetCount = 1; }
 		RATIO = new BigDecimal(BET_WIN_COUNT * 100).divide(new BigDecimal(PrintOut.ROUND_BET_COUNTER), 3,RoundingMode.HALF_UP).doubleValue();
 		System.err.println(PrintOut.BLANK_PADDING_LEFT + "BET_WIN_COUNT:" + BET_WIN_COUNT + "/"+ PrintOut.ROUND_BET_COUNTER + "(" + RATIO + "%)");
+		SegmentRecorder.TieToTie.printAllCollection();
 	}
 	public static BetResult playOneRound(PokerCardMachine pokerCardMachine, BaccartCalculator baccartCalculator) {
 		return playOneRound(pokerCardMachine, baccartCalculator, null);
@@ -151,12 +169,12 @@ public class BaccaratRoundPlay {
 		pokerCardBoxBanker.add(new PokerCardUsing(pokerCardMachine.pickOutOnePokerCard(), (short)2));
 		pokerCardBoxPlayer.add(new PokerCardUsing(pokerCardMachine.pickOutOnePokerCard(), (short)3));
 		pokerCardBoxBanker.add(new PokerCardUsing(pokerCardMachine.pickOutOnePokerCard(), (short)4));
-		BetWinerEnum twotwoCompareResult = baccartCalculator.twotwoCompare(pokerCardBoxPlayer, pokerCardBoxBanker);
-		if(twotwoCompareResult == BetWinerEnum.PLAYER_NEED_ONMORECARD) {
+		BetResultEnum twotwoCompareResult = baccartCalculator.twotwoCompare(pokerCardBoxPlayer, pokerCardBoxBanker);
+		if(twotwoCompareResult == BetResultEnum.PLAYER_NEED_ONMORECARD) {
 			pokerCardBoxPlayer.add(new PokerCardUsing(pokerCardMachine.pickOutOnePokerCard(), (short)5));
 			twotwoCompareResult = baccartCalculator.twotwoCompare(pokerCardBoxPlayer, pokerCardBoxBanker);
 		}
-		if(twotwoCompareResult == BetWinerEnum.BANKER_NEED_ONMORECARD) {
+		if(twotwoCompareResult == BetResultEnum.BANKER_NEED_ONMORECARD) {
 			pokerCardBoxBanker.add(new PokerCardUsing(pokerCardMachine.pickOutOnePokerCard(), (short)6));
 			twotwoCompareResult = baccartCalculator.twotwoCompare(pokerCardBoxPlayer, pokerCardBoxBanker);
 		}
@@ -182,10 +200,10 @@ public class BaccaratRoundPlay {
 				currentRoundBetWho.setTotalBalance(currentRoundBetWho.getTotalBalance() + currentRoundWinAmount);
 				
 				System.out.println(String.format(PrintOut.BLANK + "%10s | %-10s = %-10s | (BET|-%d,WIN,BALANCE|%d) %-10s (HIT)", 
-						playerCardDisplay, bankerCardDisplay, twotwoCompareResult.name(), currentRoundBetWho.getBetAmount(), currentRoundBetWho.getTotalBalance(), currentRoundBetWho.getBetWho().name()));
+						playerCardDisplay, bankerCardDisplay, getDisplayResultName(twotwoCompareResult, pokerCardBoxBanker), currentRoundBetWho.getBetAmount(), currentRoundBetWho.getTotalBalance(), currentRoundBetWho.getBetWho().name()));
 			}else {
 				System.out.println(String.format(PrintOut.BLANK + "%10s | %-10s = %-10s | (BET|-%d,BALANCE|%d) %-10s", 
-						playerCardDisplay, bankerCardDisplay, twotwoCompareResult.name(), currentRoundBetWho.getBetAmount(), currentRoundBetWho.getTotalBalance(), currentRoundBetWho.getBetWho().name()));
+						playerCardDisplay, bankerCardDisplay, getDisplayResultName(twotwoCompareResult, pokerCardBoxBanker), currentRoundBetWho.getBetAmount(), currentRoundBetWho.getTotalBalance(), currentRoundBetWho.getBetWho().name()));
 				
 			}
 		}
@@ -199,6 +217,27 @@ public class BaccaratRoundPlay {
 				.betAmount(currentRoundBetWho.getBetAmount())
 				.totalBalance(currentRoundBetWho.getTotalBalance()).build();
 		return currentRoundBetResult;
+	}
+	/**
+	 * 打印本次的结果
+	 * @param twotwoCompareResult
+	 * @return
+	 */
+	private static Object getDisplayResultName(BetResultEnum twotwoCompareResult, List<PokerCardUsing> pokerCardBoxBanker) {
+		if(twotwoCompareResult == BetResultEnum.BANKER_WIN) {
+			int sum = 0;
+			int cardCount = 0;
+			for(PokerCardUsing pokerCardUsing: pokerCardBoxBanker) {
+				if(pokerCardUsing.getCardDigit() > 0) {
+					sum += pokerCardUsing.getCardDigit();
+					cardCount++;
+				}
+			}
+			if(sum == 6 && cardCount >= 2) {
+				return twotwoCompareResult.name() + " => SUPER-SIX";
+			}
+		}
+		return twotwoCompareResult.name();
 	}
 	protected static String getDisplayName(List<PokerCardUsing> pokerCardBoxList) {
 		String pokerName1 = pokerCardBoxList.get(0).getCardName();
@@ -235,17 +274,17 @@ public class BaccaratRoundPlay {
 	
 	private static int tieIndex = -1;
 	private static long TIE_SWITCH_COUNT = 0L;
-	private static BetWinerEnum[] TIE_ROUND_THREE = new BetWinerEnum[3];
+	private static BetResultEnum[] TIE_ROUND_THREE = new BetResultEnum[3];
 	//private static void calculateTieCount(BetWinerEnum onRound) {
 	private static void calculateTieCount(BetResult previousRoundBetResult) {
-		if(previousRoundBetResult.getWhoWin() == BetWinerEnum.TIE) {
+		if(previousRoundBetResult.getWhoWin() == BetResultEnum.TIE) {
 			//计算上一轮的SWITCH情况
 			if(TIE_ROUND_THREE[1] != TIE_ROUND_THREE[2]) {
 				//表示发生了switch
 				TIE_SWITCH_COUNT++;
 			}
 			tieIndex = 0;
-			TIE_ROUND_THREE = new BetWinerEnum[3];
+			TIE_ROUND_THREE = new BetResultEnum[3];
 		}
 		if(tieIndex >= 0 && tieIndex <= 2) {
 			TIE_ROUND_THREE[tieIndex++] = previousRoundBetResult.getWhoWin();

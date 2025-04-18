@@ -20,7 +20,7 @@ import com.philippines.gambling.baccarat.bet.strategy.strategy.SwitchUntilWinWit
 import com.philippines.gambling.baccarat.bet.strategy.strategy.TenTimesSwitchStrategy;
 import com.philippines.gambling.baccarat.bet.strategy.strategy.ThreeTimesSwitchStrategy;
 import com.philippines.gambling.baccarat.bet.strategy.strategy.TwoTimesSwitchStrategy;
-import com.philippines.gambling.baccarat.rule.BetWinerEnum;
+import com.philippines.gambling.baccarat.rule.BetResultEnum;
 
 import cn.hutool.core.util.RandomUtil;
 
@@ -73,7 +73,7 @@ public class StrategyContext {
     }
 
     @SuppressWarnings("unlikely-arg-type")
-	public static BetWinerEnum getBetWho() {
+	public static BetResultEnum getBetWho() {
     	if(specificBetStrategy != null) {
     		return specificBetStrategy.getCurrentRoundBetWho().getBetWho();
     	}

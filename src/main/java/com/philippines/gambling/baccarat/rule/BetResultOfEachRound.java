@@ -18,7 +18,7 @@ public class BetResultOfEachRound {
 	/**
 	 * 本轮下注谁赢
 	 */
-	private BetWinerEnum betWhoWin;
+	private BetResultEnum betWhoWin;
 	
 	/**
 	 * 本轮下注金额

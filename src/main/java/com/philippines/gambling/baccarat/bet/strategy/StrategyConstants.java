@@ -4,7 +4,7 @@
  */
 package com.philippines.gambling.baccarat.bet.strategy;
 
-import com.philippines.gambling.baccarat.rule.BetWinerEnum;
+import com.philippines.gambling.baccarat.rule.BetResultEnum;
 
 /**
  * @author winter
@@ -13,8 +13,8 @@ import com.philippines.gambling.baccarat.rule.BetWinerEnum;
 public class StrategyConstants {
 	
 	
-	protected static BetWinerEnum[] BETPOOL = new BetWinerEnum[] {
-			BetWinerEnum.BANKER_WIN, BetWinerEnum.PLAYER_WIN, BetWinerEnum.TIE};
+	protected static BetResultEnum[] BETPOOL = new BetResultEnum[] {
+			BetResultEnum.BANKER_WIN, BetResultEnum.PLAYER_WIN, BetResultEnum.TIE};
 	
 }
 
